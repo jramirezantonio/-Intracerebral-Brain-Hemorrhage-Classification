@@ -1,0 +1,469 @@
+\documentclass[dvipsnames]{beamer}
+% \documentclass[handout,dvipsnames]{beamer} 
+
+\mode<presentation> {
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+\setbeamertemplate{navigation symbols}{} 
+}
+
+%\usepackage{etex}
+\usepackage[]{xcolor}
+\usepackage{amsfonts}
+\usepackage{graphicx} 
+%\usepackage{booktabs} 
+\usepackage{tikz}
+\usetikzlibrary{shapes.symbols,matrix,arrows,decorations.pathmorphing,calc,shapes}
+\usetikzlibrary{calc}
+\usepackage[matrix,arrow]{xy}
+ 
+ \usepackage{braids}
+% \usepackage{wrapfig}
+ \usepackage{adjustbox}
+ %\usepackage[colorlinks,plainpages,backref,urlcolor=blue]{hyperref}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{xstring}
+\usepackage{array}
+ \usepackage{mathtools}
+ 
+% \newtagform{blue}{\color{blue}(}{)}
+ 
+ % \usepackage{ragged2e}
+%\let\olditem=\item% 
+%\renewcommand{\item}{\olditem \justifying}%
+
+\newcounter{sarrow}
+\newcommand\xlrsquigarrow[1]{%
+\stepcounter{sarrow}%
+\mathrel{\begin{tikzpicture}[baseline= {( $ (current bounding box.south) + (0,-0.5ex) $ )}]
+\node[inner sep=.5ex] (\thesarrow) {$\scriptstyle #1$};
+\path[draw,<->,>=angle 90,decorate,
+  decoration={zigzag,amplitude=0.7pt,segment length=1.2mm, pre=lineto, pre length=3pt,post length=3pt }] 
+    (\thesarrow.south west)-- (\thesarrow.south east);
+\end{tikzpicture}}%
+} 
+
+
+ \newcommand\xrsquigarrow[1]{%
+\stepcounter{sarrow}%
+\mathrel{\begin{tikzpicture}[baseline= {( $ (current bounding box.south) + (0,-0.5ex) $ )}]
+\node[inner sep=.5ex] (\thesarrow) {$\scriptstyle #1$};
+\path[draw,->,>=angle 90,decorate,
+  decoration={zigzag,amplitude=0.7pt,segment length=1.2mm, pre=lineto, pre length=3pt,post length=3pt }] 
+    (\thesarrow.south west)-- (\thesarrow.south east);
+\end{tikzpicture}}%
+} 
+ 
+  
+\newtheorem{prop}[theorem]{Proposition}
+
+\theoremstyle{example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{blankthm}[theorem]{ }
+
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\renewcommand{\hom}{\operatorname{Hom}}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\abf}{abf}
+\DeclareMathOperator{\lin}{lin}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Hilb}{Hilb} 
+\DeclareMathOperator{\TC}{TC}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\torsion}{torsion}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\IA}{IA}
+\DeclareMathOperator{\Conf}{Conf}
+\DeclareMathOperator{\Mod}{Mod}
+
+\newcommand{\dga}{\ensuremath{\textsc{dga}}}
+\newcommand{\cdga}{\ensuremath{\textsc{cdga}}}
+\newcommand{\dgla}{\ensuremath{\textsc{dgla}}}
+ 
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\kk}{\mathbb{Q}}
+\newcommand{\mm}{\mathbbm{m}}
+
+\newcommand{\fA}{\mathfrak{A}}
+\newcommand{\fb}{\mathfrak{b}}
+\newcommand{\fB}{\mathfrak{B}}
+\newcommand{\fh}{\mathfrak{h}}
+\newcommand{\fg}{\mathfrak{g}}
+\newcommand{\fn}{\mathfrak{n}}
+\newcommand{\fM}{\mathfrak{M}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\fL}{\mathfrak{L}}
+\newcommand{\tr}{\mathfrak{tr}}
+\newcommand{\fp}{\mathfrak{p}}
+
+\newcommand{\bL}{\mathbf{L}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bw}{\mathbf{w}}
+
+\renewcommand{\k}{\mathbb{Q}}
+
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cF}{\mathcal{F}}
+
+\newcommand{\vB}{vB}
+\newcommand{\vP}{vP}
+\newcommand{\wB}{wB}
+\newcommand{\wP}{wP}
+\newcommand{\PV}{PV}
+\newcommand{\SB}{SB}
+\newcommand{\SG}{SG}
+\newcommand{\UB}{UB}
+\newcommand{\TB}{TB}
+%\newcommand{\wP}{P\Sigma}
+\newcommand{\s}{s}
+
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\inj}{\hookrightarrow}
+\newcommand{\abs}[1]{\left| #1 \right|}
+
+\newcommand{\brak}[1]{\ensuremath{\left\{ #1 \right\}}}
+\newcommand{\set}[2]{\ensuremath{\Set{ #1 \, | \, #2}}}
+\newcommand{\setang}[2]{\ensuremath{\Braket{#1 \, | \, #2}}}
+ 
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{L}[1]{>{\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+\definecolor{gold}{rgb}{0.83, 0.69, 0.22}
+
+%-------------------------------------------------------------------- 
+%	TITLE PAGE
+%------------------------------------------------------------------- 
+
+\title[\scalebox{.88}{Matrix methods in algebraic topology}]{Matrix methods in algebraic topology} 
+% The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author[He Wang]{ \large He Wang   \and \\  \small (joint work with Alex Suciu)}
+
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[UNR ] % (optional, but mostly needed)
+{\Large
+  \inst{University\, of\, Nevada,\, Reno }
+  \and
+  \inst{ }
+  {  \\  \small
+The 8th International Conference on Matrix Analysis and Applications\\ 
+ (ICMAA 2019) \\
+\small University of Nevada, Reno
+   }}
+
+
+\date{ \scalebox{.88} {July 17, 2019}}
+ 
+
+\begin{document}
+
+%--------------------------------------------------- 
+%	Frame1
+%---------------------------------------------------- 
+
+\begin{frame} 
+\titlepage 
+\end{frame}
+
+
+%------------------------------------------------
+%Frame2
+%------------------------------------------------
+
+%\begin{frame}
+%\frametitle{Overview}  
+%\tableofcontents  
+%\end{frame}
+
+%--------------------------------------------------- 
+%	PRESENTATION SLIDES
+%--------------------------------------------------
+
+%------------------------------------------------
+%\section{Background}
+%------------------------------------------------
+
+%------------------------------------------------
+\section{Formality Properties}  
+%------------------------------------------------
+
+\begin{frame}\small
+\frametitle{Topology}
+
+\begin{itemize}
+
+\item \textbf{\textcolor{Black}{Topological spaces:}} Geometric objects like lines, planes, Euclidean Spaces $\R^n$,
+spheres, torus, Mobi\"{u}s band, Klein bottle, manifolds, metric spaces, etc.
+
+
+\pause
+
+
+\item \textbf{\textcolor{Red}{Goal:}}  Classification of all topological spaces up to homeomoprhism.\\
+ 
+
+
+\pause
+
+\item \textbf{Example:}  Let $M$ be a smooth compact $n$-manifold homotopy-equivalent to $S^n$. 
+Then $M$ is homeomorphic to $S^n$.   \pause  (Generalized Poinc\'{a}re conjecture)
+ 
+
+Three \textcolor{gold}{Fields Medals} were awarded:
+Smale (1966), Freedman (1986), and Perelman (2006) for solving the problem
+for $n\geq 5$, $n=4$ and $n=3$. 
+ 
+\pause
+
+\item \textbf{\textcolor{Blue}{An ``easier'' goal:}}  Classification of all topological spaces up to  homotopy equivalence.  
+
+\pause
+
+\item \textbf{\textcolor{Green}{An even ``easier'' goal:}}  Classification of all topological spaces up to rational homotopy equivalence. 
+
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+% Frame  
+%------------------------------------------------
+
+\begin{frame}  \small
+\frametitle{Algebraic Topology}
+ 
+A  \textcolor{Green}{basic goal} in algebraic topology: \\  
+{\qquad \em ``Find \textcolor{Red}{algebraic invariants} that classify topological spaces\\
+\qquad \ \  up to homeomorphism, or up to (rational) homotopy equivalence.''}\\ \
+
+\pause
+
+Let $X$ be a connected CW-complex (topological space). 
+
+ 
+
+\begin{itemize}
+\item  \textcolor{Blue}{Fundamental group $\pi_1(X)$.}
+\item  \textcolor{Blue}{Homology groups $H_*(X;\Q)$  $\Longrightarrow$
+  Betti numbers $b_i(X)$.}
+\item  \textcolor{Blue}{Cohomology algebra $H^*(X;\Q)$. }
+\pause
+\item \textcolor{Green}{Higher (rational) homotopy groups $\pi_*(X)\otimes \Q$.}
+\item \textcolor{Green}{Homotopy Lie algebra $\pi_*(\Omega X)\otimes \Q$.}
+%\item \textcolor{Red}{Higher Massey products.}
+%\item \textcolor{Red}{Cohomology operations.}
+\item ...... 
+\pause
+\item  \textcolor{Red}{Lie algebras/ varieties in this talk.}
+\item  \textcolor{Red}{Higher products on cohomology in a current project with Chris Rogers. }
+\end{itemize}
+
+\end{frame}
+
+
+%------------------------------------------------
+% Frame  
+%------------------------------------------------
+
+\begin{frame} 
+\frametitle{Relation with group theory}
+
+\textbf{\textcolor{Green}{Groups:}}  $\Z$, $\Z^n$, $\Z/p\Z$, $S_n$, $F_n$, ...
+\vspace{0.1cm}
+
+
+\textbf{\textcolor{Red}{Goal:}}  Classification of all groups up to isomorphism.
+
+\pause
+
+\begin{itemize}
+\item $X$: a connected CW-complex with finitely many $1$-cells.
+
+\item $\textcolor{Green}{G:=\pi_1(X)}$, \textbf{\textcolor{Green}{a finitely generated group}}.
+\pause
+\item $K(G,1)$: the Eilenberg-MacLane space.
+ 
+$$\textcolor{Green}{G}  \xlrsquigarrow{\quad 1-1\quad }  K(G,1)\qquad\qquad \ \ $$
+
+ 
+\pause 
+
+\item The \textit{\textcolor{Red}{cohomology algebra}}\/ of $G$, $H^*(G;\Q):=H^*(K(G,1);\Q)$.
+\end{itemize}  
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+\frametitle{Am matrix group example}
+\begin{example}[Heisenberg group]
+
+\begin{itemize}
+\item The Heisenberg manifold,  
+$M=\left\{ 
+\begin{bmatrix}
+1 & a & c\\
+0 & 1& b\\
+0&0&1
+\end{bmatrix} ~\middle| ~
+a,b,c\in \R
+\right\}.$\\
+
+\vspace{0.2cm}
+
+\item Then $\mathcal{H}=\pi_1(M)=\left\{ 
+\begin{bmatrix}
+1 & a & c\\
+0 & 1& b\\
+0&0&1
+\end{bmatrix} ~\middle| ~
+a,b,c\in \Z
+\right\}$, and $M=K(\mathcal{H},1)$.\\
+\vspace{0.2cm}
+
+\pause
+
+\item 
+$\mathcal{H}=\langle x,y,z \mid xyx^{-1}y^{-1}z^{-1},~ xzx^{-1}z^{-1},~ yzy^{-1}z^{-1}\rangle$.\\
+%is a 3-manifold satisfying an orientable fiber bundle $S^1\to M\to S^1\times S^1$.
+\vspace{0.2cm}
+
+\pause
+ 
+\item Rational cohomology: $H^1=\Q^2$ with basis $\{u_1, u_2\}$; $H^2=\Q^2$ with basis $\{v_1, v_2\}$; $H^3=\Q$ with basis $\{w\}$.\\
+\vspace{0.2cm}
+ 
+ 
+\item Nontrivial cup products: $u_1\cup v_1=u_2\cup v_2=w$.
+\end{itemize}
+\end{example}
+\end{frame}
+  
+  
+  
+   
+ 
+ 
+ 
+%------------------------------------------------
+% Frame 30
+%------------------------------------------------
+\begin{frame}
+\frametitle{References}
+\footnotesize{
+\begin{thebibliography}{99}  
+
+ 	
+\bibitem{SW-holo}
+Alexander~I. Suciu and He~Wang,  
+{\em Cup products, lower central series, and holonomy Lie algebras}, 
+J. Pure. Appl. Algebra \textbf{223} (2019), no.~8, 3359--3385.
+
+\bibitem{SW-formal}
+Alexander~I. Suciu and He~Wang, 
+\emph{Formality properties of finitely generated 
+groups and Lie algebras}, Forum Math. \textbf{31} (2019), no. 4, 867--905
+
+\bibitem{SW-mccool}
+Alexander~I. Suciu and He~Wang, \emph{Chen ranks and resonance varieties 
+of the upper McCool groups}, to appear in  Advances in Applied Mathematics. 
+ 
+ 
+ 
+
+ 
+ 
+ 
+\end{thebibliography}
+}
+\vspace{0.5cm}
+ 
+\Huge{\centerline{\it \textcolor{red}{Thank You!}}}
+\end{frame}
+
+ 
+  
+%----------------------------------------------------------------------------------------
+ 
+\end{document} 
+ 
+ 
+ 
+  
+ 
