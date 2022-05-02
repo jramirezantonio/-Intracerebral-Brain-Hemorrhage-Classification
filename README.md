@@ -6,7 +6,7 @@ MATH 4570, Matrix Methods in Data Analysis and Machine Learning
 
 Northeastern University, May 2022
 
-#### Summary
+#### Summary:
 In this final project for MATH 4570, Matrix Methods in Data Analysis 
 and Machine Learning at Northeastern University (Spring 2022), five students
 trained a Convolutional Neural Network (CNN) model for image classification of brain hemorrhages
